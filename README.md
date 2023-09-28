@@ -5,8 +5,6 @@
 - 📫 How to reach me ...
 
 
-[![GitHub Streak](https://github-readme-streak-stats.herokuapp.com?user=trinhpv&theme=radical)](https://git.io/streak-stats)
-
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/trinhpv/trinhpv/output/github-contribution-grid-snake-dark.svg">
   <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/trinhpv/trinhpv/output/github-contribution-grid-snake.svg">
