@@ -1,0 +1,805 @@
+================================================================================
+         KẾ HOẠCH ÔN LUYỆN PCCP (Professional Competence Certification
+         of Programming - Chứng nhận Năng lực Chuyên nghiệp Lập trình)
+         THI NGÀY 12/09/2026
+         Thời gian chuẩn bị: ~5 tuần (04/08 → 12/09)
+================================================================================
+
+╔══════════════════════════════════════════════════════════════════════════════╗
+║  TỔNG QUAN FORMAT ĐỀ THI                                                  ║
+╠══════════════════════════════════════════════════════════════════════════════╣
+║  Câu 1: String / Array              (Dễ - Trung bình)                     ║
+║  Câu 2: DFS (Depth-First Search - Tìm kiếm theo chiều sâu)                ║
+║         hoặc BFS (Breadth-First Search - Tìm kiếm theo chiều rộng)        ║
+║                                      (Trung bình)                          ║
+║  Câu 3: DFS hoặc BFS                (Trung bình - Khó)                    ║
+║  Câu 4: Dynamic Programming          (Khó)                                ║
+║         (Quy hoạch động)                                                   ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+
+
+================================================================================
+PHẦN 1: STRING & ARRAY (Câu 1)
+================================================================================
+
+────────────────────────────────────────────────────────────────────────────────
+1.1. CÁC DẠNG BÀI STRING CƠ BẢN
+────────────────────────────────────────────────────────────────────────────────
+
+[A] Xử lý chuỗi cơ bản
+    • Đảo ngược chuỗi / từ trong chuỗi
+    • Kiểm tra palindrome (chuỗi đối xứng)
+    • Đếm tần suất ký tự (frequency count)
+    • Nén chuỗi (Run-Length Encoding)
+    • Chuyển đổi chữ hoa/thường
+    • Tách và nối chuỗi theo điều kiện
+
+    Ví dụ bài tập:
+    - Reverse Words in a String
+    - Valid Palindrome
+    - String Compression
+    - First Unique Character in a String
+
+[B] So khớp chuỗi (String Matching)
+    • Brute Force (Vét cạn) O(n*m)
+    • KMP (Knuth-Morris-Pratt - Thuật toán so khớp chuỗi Knuth-Morris-Pratt)
+    • Rabin-Karp (so khớp dựa trên hàm băm - Hash-based matching)
+    • Z-Algorithm (Thuật toán Z - tính mảng Z cho so khớp chuỗi)
+
+    Ví dụ bài tập:
+    - Implement strStr() / Find the Index of the First Occurrence
+    - Repeated Substring Pattern
+    - Shortest Palindrome (KMP ứng dụng)
+
+[C] Anagram & Permutation
+    • Kiểm tra anagram (2 chuỗi có cùng tập ký tự)
+    • Nhóm các anagram lại với nhau
+    • Tìm tất cả anagram trong chuỗi (Sliding Window)
+
+    Ví dụ bài tập:
+    - Valid Anagram
+    - Group Anagrams
+    - Find All Anagrams in a String
+
+[D] Substring & Subsequence
+    • Longest Common Substring
+    • Longest Common Subsequence - LCS (Dãy con chung dài nhất) → liên quan DP (Dynamic Programming - Quy hoạch động)
+    • Longest Palindromic Substring
+    • Distinct Subsequences
+
+    Ví dụ bài tập:
+    - Longest Substring Without Repeating Characters
+    - Minimum Window Substring
+    - Longest Palindromic Substring
+
+────────────────────────────────────────────────────────────────────────────────
+1.2. CÁC DẠNG BÀI ARRAY CƠ BẢN
+────────────────────────────────────────────────────────────────────────────────
+
+[A] Two Pointers (Hai con trỏ)
+    • Bài toán tổng 2 số / 3 số / 4 số
+    • Loại bỏ phần tử trùng lặp
+    • Trộn 2 mảng đã sắp xếp
+    • Container With Most Water
+    • Trapping Rain Water
+
+    Kỹ thuật chính:
+    - Hai con trỏ đầu-cuối (opposite direction)
+    - Hai con trỏ cùng hướng (same direction / fast-slow)
+
+    Ví dụ bài tập:
+    - Two Sum (dùng HashMap - Bảng băm, hoặc sort + 2 pointers)
+    - 3Sum, 4Sum
+    - Remove Duplicates from Sorted Array
+    - Move Zeroes
+    - Sort Colors (Dutch National Flag)
+
+[B] Sliding Window (Cửa sổ trượt)
+    • Fixed-size window: tổng/trung bình k phần tử liên tiếp
+    • Variable-size window: tìm chuỗi con thỏa điều kiện
+    • Shrinkable window: thu hẹp khi điều kiện bị vi phạm
+
+    Template cơ bản:
+    ┌─────────────────────────────────────────────────────┐
+    │  left = 0                                           │
+    │  for right in range(n):                             │
+    │      # Mở rộng cửa sổ: thêm arr[right]            │
+    │      while (điều kiện vi phạm):                    │
+    │          # Thu hẹp: loại bỏ arr[left]              │
+    │          left += 1                                  │
+    │      # Cập nhật kết quả                            │
+    └─────────────────────────────────────────────────────┘
+
+    Ví dụ bài tập:
+    - Maximum Sum Subarray of Size K
+    - Longest Substring Without Repeating Characters
+    - Minimum Size Subarray Sum
+    - Fruit Into Baskets
+    - Permutation in String
+
+[C] Prefix Sum (Tổng tiền tố)
+    • Tính tổng đoạn [l, r] trong O(1)
+    • Prefix Sum 2D (Tổng tiền tố trên ma trận 2 chiều)
+    • Difference Array (mảng hiệu)
+    • Subarray Sum Equals K
+
+    Công thức:
+    ┌─────────────────────────────────────────────────────┐
+    │  prefix[0] = 0                                      │
+    │  prefix[i] = prefix[i-1] + arr[i-1]                │
+    │  sum(l, r) = prefix[r+1] - prefix[l]               │
+    └─────────────────────────────────────────────────────┘
+
+    Ví dụ bài tập:
+    - Range Sum Query - Immutable
+    - Subarray Sum Equals K
+    - Continuous Subarray Sum
+    - Product of Array Except Self
+
+[D] Sorting & Searching (Sắp xếp & Tìm kiếm)
+    • Binary Search cơ bản và biến thể
+    • Tìm phần tử đầu tiên/cuối cùng thỏa điều kiện
+    • Binary Search on Answer (tìm kiếm đáp án)
+    • Merge Sort ứng dụng (đếm cặp nghịch thế)
+
+    Ví dụ bài tập:
+    - Binary Search
+    - Search in Rotated Sorted Array
+    - Find Minimum in Rotated Sorted Array
+    - Kth Largest Element in an Array
+    - Median of Two Sorted Arrays
+
+[E] HashMap / HashSet
+    • Đếm tần suất
+    • Kiểm tra tồn tại
+    • Two Sum pattern
+    • Nhóm phần tử
+
+    Ví dụ bài tập:
+    - Two Sum
+    - Contains Duplicate
+    - Intersection of Two Arrays
+    - Top K Frequent Elements
+
+[F] Simulation & Implementation
+    • Xoay mảng / ma trận
+    • Spiral Matrix
+    • Game of Life
+    • Các bài mô phỏng theo yêu cầu đề
+
+    Ví dụ bài tập:
+    - Rotate Array
+    - Spiral Matrix I, II
+    - Set Matrix Zeroes
+    - Game of Life
+
+
+================================================================================
+PHẦN 2: DFS (Depth-First Search) & BFS (Breadth-First Search) (Câu 2, 3)
+================================================================================
+
+────────────────────────────────────────────────────────────────────────────────
+2.1. KIẾN THỨC NỀN TẢNG
+────────────────────────────────────────────────────────────────────────────────
+
+[A] Biểu diễn đồ thị
+    • Adjacency List (danh sách kề) ← phổ biến nhất
+    • Adjacency Matrix (ma trận kề)
+    • Edge List (danh sách cạnh)
+    • Implicit Graph (lưới 2D, trạng thái)
+
+    Template Adjacency List:
+    ┌─────────────────────────────────────────────────────┐
+    │  graph = defaultdict(list)                          │
+    │  for u, v in edges:                                 │
+    │      graph[u].append(v)                             │
+    │      graph[v].append(u)  # nếu vô hướng           │
+    └─────────────────────────────────────────────────────┘
+
+[B] Template DFS (Depth-First Search - Tìm kiếm theo chiều sâu)
+    
+    Đệ quy:
+    ┌─────────────────────────────────────────────────────┐
+    │  def dfs(node, visited):                            │
+    │      visited.add(node)                              │
+    │      for neighbor in graph[node]:                   │
+    │          if neighbor not in visited:                 │
+    │              dfs(neighbor, visited)                  │
+    └─────────────────────────────────────────────────────┘
+
+    Dùng Stack:
+    ┌─────────────────────────────────────────────────────┐
+    │  stack = [start]                                    │
+    │  visited = set()                                    │
+    │  while stack:                                       │
+    │      node = stack.pop()                             │
+    │      if node in visited: continue                   │
+    │      visited.add(node)                              │
+    │      for neighbor in graph[node]:                   │
+    │          if neighbor not in visited:                 │
+    │              stack.append(neighbor)                  │
+    └─────────────────────────────────────────────────────┘
+
+[C] Template BFS (Breadth-First Search - Tìm kiếm theo chiều rộng)
+
+    ┌─────────────────────────────────────────────────────┐
+    │  from collections import deque                      │
+    │  queue = deque([start])                             │
+    │  visited = {start}                                  │
+    │  level = 0                                          │
+    │  while queue:                                       │
+    │      size = len(queue)                              │
+    │      for _ in range(size):                          │
+    │          node = queue.popleft()                     │
+    │          for neighbor in graph[node]:               │
+    │              if neighbor not in visited:             │
+    │                  visited.add(neighbor)               │
+    │                  queue.append(neighbor)              │
+    │      level += 1                                     │
+    └─────────────────────────────────────────────────────┘
+
+────────────────────────────────────────────────────────────────────────────────
+2.2. CÁC DẠNG BÀI DFS
+────────────────────────────────────────────────────────────────────────────────
+
+[A] DFS trên cây (Tree DFS)
+    • Duyệt cây: Preorder, Inorder, Postorder
+    • Tính chiều cao / độ sâu
+    • Đường kính cây (Diameter of Binary Tree)
+    • Lowest Common Ancestor - LCA (Tổ tiên chung gần nhất)
+    • Path Sum (tìm đường đi có tổng = target)
+    • Serialize và Deserialize cây
+    • Kiểm tra cây đối xứng (Symmetric Tree)
+    • Balanced Binary Tree
+
+    Ví dụ bài tập:
+    - Maximum Depth of Binary Tree
+    - Path Sum I, II, III
+    - Binary Tree Maximum Path Sum
+    - Diameter of Binary Tree
+    - Lowest Common Ancestor of a Binary Tree
+    - Validate Binary Search Tree - BST (Cây tìm kiếm nhị phân)
+    - Flatten Binary Tree to Linked List
+
+[B] DFS trên đồ thị (Graph DFS)
+    • Đếm số thành phần liên thông (Connected Components)
+    • Phát hiện chu trình (Cycle Detection)
+        - Đồ thị vô hướng: dùng parent tracking
+        - Đồ thị có hướng: dùng 3 màu (white/gray/black)
+    • Topological Sort (Sắp xếp tô-pô - sắp xếp thứ tự phụ thuộc trong đồ thị có hướng không chu trình DAG - Directed Acyclic Graph)
+    • Tìm cầu và khớp (Bridges - cạnh cầu & Articulation Points - đỉnh khớp) → Tarjan (Thuật toán Tarjan)
+    • Strongly Connected Components - SCC (Thành phần liên thông mạnh) → Kosaraju / Tarjan
+    • Bipartite Check (kiểm tra đồ thị 2 phía)
+
+    Ví dụ bài tập:
+    - Number of Connected Components
+    - Course Schedule I, II (Cycle Detection + Topo Sort)
+    - Detect Cycle in Directed/Undirected Graph
+    - Critical Connections in a Network (Bridges)
+    - Is Graph Bipartite?
+    - Alien Dictionary (Topo Sort)
+
+[C] DFS trên lưới 2D (Grid DFS)
+    • Đếm đảo (Number of Islands)
+    • Diện tích đảo lớn nhất
+    • Flood Fill
+    • Surrounded Regions
+    • Đường đi trong mê cung
+
+    Di chuyển 4 hướng:
+    ┌─────────────────────────────────────────────────────┐
+    │  directions = [(0,1), (0,-1), (1,0), (-1,0)]       │
+    │  for dx, dy in directions:                          │
+    │      nx, ny = x + dx, y + dy                       │
+    │      if 0 <= nx < rows and 0 <= ny < cols:         │
+    │          # xử lý ô (nx, ny)                        │
+    └─────────────────────────────────────────────────────┘
+
+    Ví dụ bài tập:
+    - Number of Islands
+    - Max Area of Island
+    - Flood Fill
+    - Surrounded Regions
+    - Pacific Atlantic Water Flow
+    - Word Search
+
+[D] Backtracking (Quay lui) - mở rộng DFS
+    • Sinh tổ hợp (Combinations)
+    • Sinh hoán vị (Permutations)
+    • Tập con (Subsets)
+    • N-Queens Problem
+    • Sudoku Solver
+    • Word Search
+
+    Template Backtracking:
+    ┌─────────────────────────────────────────────────────┐
+    │  def backtrack(path, choices):                      │
+    │      if (đạt mục tiêu):                            │
+    │          result.append(path[:])                     │
+    │          return                                     │
+    │      for choice in choices:                         │
+    │          if (hợp lệ):                              │
+    │              path.append(choice)                    │
+    │              backtrack(path, new_choices)            │
+    │              path.pop()  # quay lui                │
+    └─────────────────────────────────────────────────────┘
+
+    Ví dụ bài tập:
+    - Subsets I, II
+    - Permutations I, II
+    - Combinations
+    - Combination Sum I, II, III
+    - N-Queens
+    - Palindrome Partitioning
+
+────────────────────────────────────────────────────────────────────────────────
+2.3. CÁC DẠNG BÀI BFS
+────────────────────────────────────────────────────────────────────────────────
+
+[A] BFS tìm đường ngắn nhất (Shortest Path)
+    • Đường ngắn nhất trên đồ thị không trọng số
+    • Đường ngắn nhất trong lưới 2D
+    • Shortest Path with Obstacles Elimination
+    • Multi-source BFS (BFS đa nguồn - Tìm kiếm theo chiều rộng từ nhiều điểm xuất phát đồng thời)
+
+    Ví dụ bài tập:
+    - Shortest Path in Binary Matrix
+    - Shortest Bridge
+    - 01 Matrix (Multi-source BFS)
+    - Rotting Oranges (Multi-source BFS)
+    - Jump Game (BFS approach)
+    - Word Ladder
+
+[B] BFS theo tầng (Level-order)
+    • Duyệt cây theo tầng (Level Order Traversal)
+    • Zigzag Level Order
+    • Right Side View
+    • Minimum Depth of Binary Tree
+
+    Ví dụ bài tập:
+    - Binary Tree Level Order Traversal
+    - Binary Tree Zigzag Level Order Traversal
+    - Binary Tree Right Side View
+    - Average of Levels in Binary Tree
+
+[C] BFS trên trạng thái (State-space BFS)
+    • Mỗi "node" là một trạng thái (state)
+    • Tìm số bước tối thiểu để đạt trạng thái đích
+    • Sliding Puzzle
+    • Open the Lock
+
+    Ví dụ bài tập:
+    - Open the Lock
+    - Sliding Puzzle
+    - Minimum Genetic Mutation
+    - Word Ladder I, II
+
+[D] 0-1 BFS (BFS với trọng số 0 và 1)
+    • Dùng deque thay vì queue thông thường
+    • Cạnh trọng số 0: thêm vào đầu deque
+    • Cạnh trọng số 1: thêm vào cuối deque
+
+    Template:
+    ┌─────────────────────────────────────────────────────┐
+    │  deq = deque([(0, start)])  # (cost, node)         │
+    │  dist = {start: 0}                                  │
+    │  while deq:                                         │
+    │      cost, node = deq.popleft()                    │
+    │      for w, neighbor in graph[node]:               │
+    │          new_cost = cost + w                        │
+    │          if new_cost < dist.get(neighbor, inf):     │
+    │              dist[neighbor] = new_cost              │
+    │              if w == 0:                              │
+    │                  deq.appendleft((new_cost, nei))   │
+    │              else:                                   │
+    │                  deq.append((new_cost, nei))        │
+    └─────────────────────────────────────────────────────┘
+
+────────────────────────────────────────────────────────────────────────────────
+2.4. KHI NÀO DÙNG DFS vs BFS?
+────────────────────────────────────────────────────────────────────────────────
+
+    ┌──────────────────────┬──────────────────────────────┐
+    │    Dùng DFS khi:     │       Dùng BFS khi:          │
+    ├──────────────────────┼──────────────────────────────┤
+    │ • Tìm tất cả đường  │ • Tìm đường ngắn nhất       │
+    │   đi / giải pháp    │   (đồ thị không trọng số)   │
+    │ • Backtracking       │ • Duyệt theo tầng           │
+    │ • Topological Sort   │ • Multi-source shortest path│
+    │ • Phát hiện chu trình│ • Tìm khoảng cách tối thiểu │
+    │ • Đếm thành phần    │ • State-space search          │
+    │   liên thông        │                               │
+    │ • Bài toán trên cây │ • Bài có yêu cầu "tối thiểu"│
+    │   (pre/in/post)     │   số bước                    │
+    └──────────────────────┴──────────────────────────────┘
+
+
+================================================================================
+PHẦN 3: DYNAMIC PROGRAMMING - DP (Quy hoạch động) (Câu 4)
+================================================================================
+
+────────────────────────────────────────────────────────────────────────────────
+3.1. PHƯƠNG PHÁP TIẾP CẬN DP (Dynamic Programming - Quy hoạch động)
+────────────────────────────────────────────────────────────────────────────────
+
+Bước 1: Xác định TRẠNG THÁI (state)
+    → dp[i] đại diện cho cái gì?
+    → Có cần thêm chiều không? dp[i][j]?
+
+Bước 2: Xác định CÔNG THỨC CHUYỂN TRẠNG THÁI (transition)
+    → dp[i] được tính từ những trạng thái nào trước đó?
+
+Bước 3: Xác định TRẠNG THÁI GỐC (base case)
+    → dp[0] = ? dp[1] = ?
+
+Bước 4: Xác định THỨ TỰ TÍNH TOÁN
+    → Bottom-up / tabulation (tính từ dưới lên - điền bảng) hay Top-down / memoization (tính từ trên xuống - ghi nhớ kết quả)?
+
+Bước 5: TỐI ƯU không gian nếu có thể
+    → Nếu dp[i] chỉ phụ thuộc dp[i-1] → dùng biến thay mảng
+
+────────────────────────────────────────────────────────────────────────────────
+3.2. CÁC DẠNG DP KINH ĐIỂN
+────────────────────────────────────────────────────────────────────────────────
+
+[A] DP 1 chiều cơ bản (1D DP - One-Dimensional Dynamic Programming)
+    • Fibonacci, Climbing Stairs
+    • House Robber I, II
+    • Decode Ways
+    • Maximum Subarray (Kadane's Algorithm)
+    • Jump Game I, II
+    • Coin Change (số đồng xu tối thiểu)
+    • Word Break
+
+    Mẫu chung:
+    ┌─────────────────────────────────────────────────────┐
+    │  dp[i] = f(dp[i-1], dp[i-2], ...)                  │
+    └─────────────────────────────────────────────────────┘
+
+    Ví dụ - House Robber:
+    dp[i] = max(dp[i-1], dp[i-2] + nums[i])
+
+[B] DP 2 chiều (2D DP)
+    • Unique Paths I, II
+    • Minimum Path Sum
+    • Edit Distance
+    • Longest Common Subsequence - LCS (Dãy con chung dài nhất)
+    • Longest Palindromic Subsequence
+    • Regular Expression Matching
+    • Wildcard Matching
+    • Interleaving String
+
+    Mẫu chung:
+    ┌─────────────────────────────────────────────────────┐
+    │  dp[i][j] = f(dp[i-1][j], dp[i][j-1], ...)        │
+    └─────────────────────────────────────────────────────┘
+
+    Ví dụ - Edit Distance:
+    dp[i][j] = dp[i-1][j-1]                   nếu s[i] == t[j]
+    dp[i][j] = 1 + min(dp[i-1][j],            insert
+                       dp[i][j-1],             delete  
+                       dp[i-1][j-1])           replace
+
+[C] Knapsack (Bài toán ba lô - Bài toán cái túi)
+    
+    ★ 0/1 Knapsack (mỗi vật chọn hoặc không):
+    ┌─────────────────────────────────────────────────────┐
+    │  dp[i][w] = max(dp[i-1][w],                        │
+    │                 dp[i-1][w - weight[i]] + value[i])  │
+    └─────────────────────────────────────────────────────┘
+
+    ★ Unbounded Knapsack (chọn không giới hạn):
+    ┌─────────────────────────────────────────────────────┐
+    │  dp[w] = max(dp[w], dp[w - weight[i]] + value[i])  │
+    │  (duyệt w từ weight[i] → W)                        │
+    └─────────────────────────────────────────────────────┘
+
+    ★ Subset Sum / Partition:
+    dp[i][s] = dp[i-1][s] OR dp[i-1][s - nums[i]]
+
+    Ví dụ bài tập:
+    - 0/1 Knapsack
+    - Partition Equal Subset Sum
+    - Target Sum
+    - Coin Change (Unbounded Knapsack)
+    - Coin Change 2 (đếm số cách)
+    - Ones and Zeroes
+
+[D] DP trên chuỗi (String DP)
+    • Longest Palindromic Subsequence
+    • Longest Common Subsequence
+    • Edit Distance
+    • Distinct Subsequences
+    • Palindrome Partitioning II (min cuts)
+    • Word Break I, II
+    • Regular Expression Matching
+
+[E] DP khoảng (Interval DP)
+    • Burst Balloons
+    • Matrix Chain Multiplication
+    • Palindrome Partitioning
+    • Stone Game
+    • Minimum Cost to Merge Stones
+
+    Mẫu chung:
+    ┌─────────────────────────────────────────────────────┐
+    │  for length in range(2, n+1):      # độ dài khoảng│
+    │      for i in range(n - length + 1):               │
+    │          j = i + length - 1                         │
+    │          for k in range(i, j):     # điểm chia    │
+    │              dp[i][j] = min/max(dp[i][k] + ...)    │
+    └─────────────────────────────────────────────────────┘
+
+[F] DP trên cây (Tree DP)
+    • House Robber III
+    • Binary Tree Maximum Path Sum
+    • Diameter of Binary Tree
+    • Longest Path in a Tree
+    • Distribution of resources on tree
+
+    Mẫu chung:
+    ┌─────────────────────────────────────────────────────┐
+    │  def dfs(node):                                     │
+    │      if not node: return base_case                  │
+    │      left = dfs(node.left)                          │
+    │      right = dfs(node.right)                        │
+    │      # Tính dp cho node dựa trên left, right       │
+    │      return result                                  │
+    └─────────────────────────────────────────────────────┘
+
+[G] DP Bitmask (DP trên tập con - bitmask)
+    • Travelling Salesman Problem - TSP (Bài toán người bán hàng - tìm đường đi ngắn nhất qua tất cả các thành phố)
+    • Assignment Problem
+    • Shortest Hamiltonian Path (Đường đi Hamilton ngắn nhất - đường đi qua mọi đỉnh đúng 1 lần)
+    • Partition to K Equal Sum Subsets
+
+    Mẫu chung:
+    ┌─────────────────────────────────────────────────────┐
+    │  dp[mask][i] = chi phí tối thiểu khi đã thăm các  │
+    │                đỉnh trong mask, kết thúc tại i     │
+    │                                                     │
+    │  for mask in range(1 << n):                        │
+    │      for i in range(n):                             │
+    │          if mask & (1 << i):                        │
+    │              for j in range(n):                     │
+    │                  if not (mask & (1 << j)):          │
+    │                      new_mask = mask | (1 << j)     │
+    │                      dp[new_mask][j] = min(...)     │
+    └─────────────────────────────────────────────────────┘
+
+[H] DP tối ưu với các cấu trúc dữ liệu
+    • Longest Increasing Subsequence - LIS (Dãy con tăng dài nhất) + Binary Search (Tìm kiếm nhị phân) → O(n log n)
+    • DP + Monotone Stack (Ngăn xếp đơn điệu)
+    • DP + Segment Tree (Cây phân đoạn - cây đoạn)
+    • Convex Hull Trick (Kỹ thuật bao lồi - tối ưu DP dạng tuyến tính)
+
+    Ví dụ - LIS (Longest Increasing Subsequence - Dãy con tăng dài nhất) O(n log n):
+    ┌─────────────────────────────────────────────────────┐
+    │  tails = []                                         │
+    │  for num in nums:                                   │
+    │      pos = bisect_left(tails, num)                  │
+    │      if pos == len(tails):                          │
+    │          tails.append(num)                           │
+    │      else:                                           │
+    │          tails[pos] = num                            │
+    │  return len(tails)                                   │
+    └─────────────────────────────────────────────────────┘
+
+────────────────────────────────────────────────────────────────────────────────
+3.3. CÁC MẸO QUAN TRỌNG KHI LÀM DP
+────────────────────────────────────────────────────────────────────────────────
+
+1. Luôn bắt đầu bằng cách viết đệ quy (top-down) trước
+   → Dễ nghĩ hơn, dễ debug hơn
+   → Thêm memoization (ghi nhớ kết quả, dùng @lru_cache hoặc dict)
+   → Chuyển sang bottom-up nếu cần tối ưu
+
+2. Vẽ bảng DP ra giấy với ví dụ nhỏ
+   → Giúp phát hiện pattern chuyển trạng thái
+
+3. Chú ý base case
+   → Nhiều bài sai vì base case thiếu hoặc sai
+
+4. Tối ưu không gian
+   → Nếu dp[i] chỉ cần dp[i-1]: dùng 2 biến hoặc 2 hàng
+   → Giảm O(n²) space → O(n)
+
+5. Nhận diện bài DP:
+   → "Tìm số cách..." → DP đếm
+   → "Tìm giá trị lớn nhất/nhỏ nhất..." → DP tối ưu
+   → "Có thể hay không..." → DP boolean
+   → Có tính chất overlapping subproblems (bài toán con trùng lặp) + optimal substructure (cấu trúc con tối ưu)
+
+
+================================================================================
+PHẦN 4: KẾ HOẠCH ÔN LUYỆN 5 TUẦN
+================================================================================
+
+╔══════════════════════════════════════════════════════════════════════════════╗
+║  TUẦN 1 (04/08 - 10/08): NỀN TẢNG STRING & ARRAY                         ║
+╠══════════════════════════════════════════════════════════════════════════════╣
+║                                                                            ║
+║  Ngày 1-2: String cơ bản                                                  ║
+║    □ Ôn lại xử lý chuỗi: reverse, palindrome, frequency count             ║
+║    □ Làm 5-6 bài: Valid Palindrome, First Unique Character,               ║
+║      String Compression, Reverse Words, Valid Anagram                      ║
+║                                                                            ║
+║  Ngày 3-4: Two Pointers + HashMap                                         ║
+║    □ Nắm vững kỹ thuật hai con trỏ                                        ║
+║    □ Làm 5-6 bài: Two Sum, 3Sum, Move Zeroes, Sort Colors,               ║
+║      Remove Duplicates, Container With Most Water                          ║
+║                                                                            ║
+║  Ngày 5-6: Sliding Window + Prefix Sum                                    ║
+║    □ Thuộc template sliding window                                         ║
+║    □ Làm 5-6 bài: Max Sum Subarray of Size K, Longest Substring           ║
+║      Without Repeating Characters, Minimum Size Subarray Sum,              ║
+║      Subarray Sum Equals K, Find All Anagrams                              ║
+║                                                                            ║
+║  Ngày 7: Binary Search + Tổng ôn                                          ║
+║    □ Binary Search cơ bản và biến thể                                      ║
+║    □ Ôn lại các dạng yếu của tuần                                          ║
+║                                                                            ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+
+╔══════════════════════════════════════════════════════════════════════════════╗
+║  TUẦN 2 (11/08 - 17/08): DFS CƠ BẢN                                      ║
+╠══════════════════════════════════════════════════════════════════════════════╣
+║                                                                            ║
+║  Ngày 1-2: DFS trên cây                                                   ║
+║    □ Duyệt cây (pre/in/post order)                                        ║
+║    □ Làm 5-6 bài: Max Depth, Path Sum,                                    ║
+║      Validate BST (Binary Search Tree - Cây tìm kiếm nhị phân),          ║
+║      Symmetric Tree, Diameter of Binary Tree,                              ║
+║      LCA (Lowest Common Ancestor - Tổ tiên chung gần nhất)               ║
+║                                                                            ║
+║  Ngày 3-4: DFS trên đồ thị + lưới 2D                                     ║
+║    □ Biểu diễn đồ thị, template DFS đồ thị                                ║
+║    □ Làm 5-6 bài: Number of Islands, Max Area of Island,                  ║
+║      Flood Fill, Connected Components, Clone Graph                         ║
+║                                                                            ║
+║  Ngày 5-6: Backtracking                                                    ║
+║    □ Thuộc template backtracking                                           ║
+║    □ Làm 5-6 bài: Subsets, Permutations, Combinations,                    ║
+║      Combination Sum, N-Queens, Palindrome Partitioning                    ║
+║                                                                            ║
+║  Ngày 7: Cycle Detection + Topological Sort                                ║
+║    □ Phát hiện chu trình, sắp xếp topo                                     ║
+║    □ Làm: Course Schedule I, II, Alien Dictionary                          ║
+║                                                                            ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+
+╔══════════════════════════════════════════════════════════════════════════════╗
+║  TUẦN 3 (18/08 - 24/08): BFS + DFS NÂNG CAO                              ║
+╠══════════════════════════════════════════════════════════════════════════════╣
+║                                                                            ║
+║  Ngày 1-2: BFS tìm đường ngắn nhất                                       ║
+║    □ BFS cơ bản, Multi-source BFS                                          ║
+║    □ Làm 5-6 bài: Shortest Path in Binary Matrix,                        ║
+║      Rotting Oranges, 01 Matrix, Word Ladder, Shortest Bridge              ║
+║                                                                            ║
+║  Ngày 3-4: BFS theo tầng + trạng thái                                    ║
+║    □ Level-order traversal, State-space BFS                                ║
+║    □ Làm 5-6 bài: Level Order Traversal, Zigzag,                         ║
+║      Open the Lock, Sliding Puzzle, Min Genetic Mutation                   ║
+║                                                                            ║
+║  Ngày 5-6: DFS/BFS nâng cao                                               ║
+║    □ 0-1 BFS (BFS trọng số 0-1),                                          ║
+║      Bidirectional BFS (BFS hai chiều - tìm từ 2 đầu)                     ║
+║    □ Bridges (Cạnh cầu), Articulation Points (Đỉnh khớp) - Tarjan        ║
+║    □ Bipartite Check, Pacific Atlantic Water Flow                          ║
+║                                                                            ║
+║  Ngày 7: Tổng ôn DFS/BFS                                                  ║
+║    □ Ôn lại tất cả template                                                ║
+║    □ Làm 2-3 bài tổng hợp khó                                             ║
+║                                                                            ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+
+╔══════════════════════════════════════════════════════════════════════════════╗
+║  TUẦN 4 (25/08 - 31/08): DYNAMIC PROGRAMMING                              ║
+╠══════════════════════════════════════════════════════════════════════════════╣
+║                                                                            ║
+║  Ngày 1-2: DP 1 chiều                                                     ║
+║    □ Nắm phương pháp tiếp cận DP 5 bước                                   ║
+║    □ Làm 6-7 bài: Climbing Stairs, House Robber I/II,                     ║
+║      Coin Change, Maximum Subarray, Jump Game, Decode Ways                 ║
+║                                                                            ║
+║  Ngày 3-4: DP 2 chiều + Knapsack                                          ║
+║    □ Bài toán trên lưới, LCS (Longest Common Subsequence                  ║
+║      - Dãy con chung dài nhất), Edit Distance (Khoảng cách chỉnh sửa)    ║
+║    □ Làm 6-7 bài: Unique Paths, Min Path Sum, LCS,                       ║
+║      Edit Distance, Partition Equal Subset Sum, Target Sum                 ║
+║                                                                            ║
+║  Ngày 5-6: DP trên chuỗi + Interval DP                                   ║
+║    □ Palindromic Subsequence, Word Break                                   ║
+║    □ Làm 5-6 bài: Longest Palindromic Subsequence,                       ║
+║      Word Break, Burst Balloons, Regular Expression Matching               ║
+║                                                                            ║
+║  Ngày 7: DP nâng cao                                                       ║
+║    □ Tree DP (DP trên cây), Bitmask DP (DP trên tập con                   ║
+║      dùng mặt nạ bit), LIS (Dãy con tăng dài nhất) tối ưu               ║
+║    □ Làm 3-4 bài: House Robber III, LIS,                                  ║
+║      TSP (Travelling Salesman Problem - Bài toán người bán hàng) nhỏ     ║
+║                                                                            ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+
+╔══════════════════════════════════════════════════════════════════════════════╗
+║  TUẦN 5 (01/09 - 11/09): TỔNG ÔN + THI THỬ                               ║
+╠══════════════════════════════════════════════════════════════════════════════╣
+║                                                                            ║
+║  Ngày 1-3: Ôn lại điểm yếu                                                ║
+║    □ Xem lại các bài đã làm sai / chưa giải được                          ║
+║    □ Ôn lại tất cả template quan trọng                                     ║
+║    □ Viết lại solution từ đầu (không xem lời giải)                         ║
+║                                                                            ║
+║  Ngày 4-6: Thi thử (Mock Contest)                                         ║
+║    □ Mỗi ngày làm 1 bộ đề 4 câu theo format PCCP (Professional            ║
+║      Competence Certification of Programming)                              ║
+║    □ Bấm giờ như thi thật                                                  ║
+║    □ Bộ 1: Easy String + Medium BFS + Medium DFS + Hard DP                ║
+║    □ Bộ 2: Easy Array + Medium DFS + Hard BFS + Hard DP                   ║
+║    □ Bộ 3: Medium String + Medium BFS + Hard DFS + Hard DP                ║
+║    □ Sau mỗi buổi: review kỹ, ghi chú lỗi sai                            ║
+║                                                                            ║
+║  Ngày 7-10: Chạy đà                                                       ║
+║    □ Ôn nhẹ, đọc lại ghi chú                                              ║
+║    □ Làm 1-2 bài dễ/trung bình mỗi ngày để giữ phong độ                  ║
+║    □ Đảm bảo sức khỏe, ngủ đủ giấc                                        ║
+║                                                                            ║
+║  ★ NGÀY 12/09: THI PCCP ★                                                 ║
+║    □ Đến sớm, bình tĩnh                                                   ║
+║    □ Đọc kỹ đề trước khi code                                             ║
+║    □ Ưu tiên giải câu 1 → 2 → 3 → 4                                      ║
+║    □ Nếu kẹt câu nào, skip sang câu sau rồi quay lại                      ║
+║                                                                            ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+
+
+================================================================================
+PHẦN 5: CHECKLIST CÁC TEMPLATE CẦN THUỘC
+================================================================================
+
+  □ Two Pointers (Hai con trỏ - opposite + same direction)
+  □ Sliding Window (Cửa sổ trượt - fixed + variable size)
+  □ Prefix Sum (Tổng tiền tố - 1D + 2D)
+  □ Binary Search (Tìm kiếm nhị phân - basic + on answer)
+  □ DFS (Depth-First Search) đệ quy + DFS stack
+  □ BFS (Breadth-First Search) với queue (hàng đợi) + level-tracking (theo dõi tầng)
+  □ Backtracking (Quay lui) template
+  □ Topological Sort (Sắp xếp tô-pô) bằng DFS + BFS/Kahn's (Thuật toán Kahn)
+  □ 0-1 BFS (BFS trọng số 0 và 1)
+  □ DP (Dynamic Programming - Quy hoạch động) 5 bước tiếp cận
+  □ Knapsack (Ba lô) 0/1 + Unbounded (không giới hạn)
+  □ LIS (Longest Increasing Subsequence - Dãy con tăng dài nhất) với Binary Search
+  □ Interval DP (DP khoảng) template
+  □ Bitmask DP (DP mặt nạ bit) template
+
+
+================================================================================
+PHẦN 6: TÀI LIỆU THAM KHẢO
+================================================================================
+
+Nền tảng luyện tập:
+  • LeetCode (leetcode.com) - Tập trung làm bài theo tag
+  • Codeforces (codeforces.com) - Thi thử, luyện tốc độ
+  • Luogu (luogu.com.cn) - Nhiều đề PCCP/CSP (Certified Software Professional
+    - Chứng nhận Chuyên gia Phần mềm) cũ
+
+Tài liệu học:
+  • "算法竞赛入门经典" (Nhập môn Kinh điển Thi đấu Thuật toán) - Lưu Nhữ Giai (Liu Rujia)
+  • CP Algorithms (cp-algorithms.com) - CP (Competitive Programming - Lập trình
+    thi đấu) - Tra cứu thuật toán
+  • OI Wiki (oi-wiki.org) - OI (Olympiad in Informatics - Olympic Tin học)
+    Wiki thuật toán tiếng Trung
+  • Neetcode.io - Video giải thích + Roadmap
+
+Chiến lược thi:
+  • Câu 1 (15-20 phút): Giải nhanh, test kỹ edge cases (trường hợp biên)
+  • Câu 2 (25-30 phút): Xác định DFS/BFS, code template
+  • Câu 3 (30-40 phút): Phân tích kỹ, có thể cần biến thể
+  • Câu 4 (40-50 phút): Xác định dạng DP, vẽ bảng, code cẩn thận
+  • Dành 5-10 phút cuối review code
+
+================================================================================
+                         CHÚC BẠN ÔN TẬP HIỆU QUẢ!
+                        VÀ THI PCCP THÀNH CÔNG! 🎯💪
+================================================================================
